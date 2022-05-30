@@ -68,8 +68,20 @@ const onTurnErrorHandler = async (context, error) => {
 // Set the onTurnError for the singleton CloudAdapter.
 adapter.onTurnError = onTurnErrorHandler;
 
+// Map configuration values from .env file into the required format for each service.
+const QnAConfiguration = {
+    knowledgeBaseId: process.env.QnAKnowledgebaseId,
+    endpointKey: process.env.QnAAuthKey,
+    host: process.env.QnAEndpointHostName
+};
+
+//pack each service configuration into
+const configuration = {
+    QnAConfiguration
+}
+
 // Create the main dialog.
-const myBot = new EchoBot();
+const myBot = new EchoBot(configuration);
 
 // Listen for incoming requests.
 server.post('/api/messages', async (req, res) => {

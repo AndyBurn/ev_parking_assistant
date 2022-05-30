@@ -1,0 +1,18 @@
+{
+    "name": "echo_bot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "http://localhost:3978/api/messages",
+            "id": "b6140540-dfdb-11ec-b659-497449ba3fda",
+            "appId": "fd3c5c3f-37f1-4c42-8395-e8ef7227a9fe",
+            "appPassword": "G38Bv(}}bXbOPi%;BIf$7-+W_v16F*Xz",
+            "endpoint": "http://localhost:3978/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\Users\\Gachanja\\Documents\\Cloud\\Microsoft_Azure_Cloud_Architect\\Project_02\\echo_bot.bot",
+    "overrides": null
+}
