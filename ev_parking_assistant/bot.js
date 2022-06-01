@@ -3,6 +3,8 @@
 
 const { ActivityHandler, MessageFactory } = require('botbuilder');
 
+const { TextAnalyticsClient, AzureKeyCredential } = require("@azure/ai-text-analytics");
+
 const { QnAMaker } = require('botbuilder-ai');
 
 const IntentRecognizer = require("./intentrecognizer")
@@ -10,6 +12,9 @@ const IntentRecognizer = require("./intentrecognizer")
 class EchoBot extends ActivityHandler {
     constructor(configuration, qnaOptions) {
         super();
+        const key = '4d7435b1d1f647a3a4a059fd769b2281';
+        const endpoint = 'https://ev-parking-assistant-textanalytics.cognitiveservices.azure.com/';
+        const textAnalyticsClient = new TextAnalyticsClient(endpoint, new AzureKeyCredential(key));
         if(!configuration) throw new Error('[QnaMakerBot]: Missing parameter. Configuration is required');
         // Create a QnAMaker connector
         this.qnaMaker = new QnAMaker(configuration.QnAConfiguration, qnaOptions);
@@ -19,8 +24,12 @@ class EchoBot extends ActivityHandler {
 
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            // Send user input to QnA Maker
+            const replyText = `Echo: ${ context.activity.text }`;
+            await context.sendActivity(MessageFactory.text(replyText, replyText));
 
+            // Call the sentiment analysis function on the context text
+            await sentimentAnalysis(textAnalyticsClient,context.activity.text);
+            
             // Send user input to LUIS
             const LuisResult = await this.intentRecognizer.executeLuisQuery(context);
 
@@ -40,6 +49,7 @@ class EchoBot extends ActivityHandler {
                 return;
             }
 
+            // Send user input to QnA Maker
             const qnaResults = await this.qnaMaker.getAnswers(context);
             // If an answer was received from QnA Maker, send the answer back to the user.
             if(qnaResults[0]){
@@ -70,6 +80,24 @@ class EchoBot extends ActivityHandler {
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
+
+        async function sentimentAnalysis(client,userText){
+            console.log("Running sentiment analysis on: " + userText);
+            const sentimentInput = [ userText ];
+            const sentimentResult = await client.analyzeSentiment(sentimentInput);
+            console.log("Got sentiment result");
+
+            // This is where you send the sentimentInput and sentimentResults to a database
+            // or storage instead of the console.
+
+            sentimentResult.forEach(document => {
+                console.log(`ID: ${document.id}`);
+                console.log(`\tDocument Sentiment: ${document.sentiment}`);
+                console.log(`\tDocument Scores:`);
+                console.log(`\t\tPositive: ${document.confidenceScores.positive.toFixed(2)} \tNegative: ${document.confidenceScores.negative.
+                toFixed(2)} \tNeutral: ${document.confidenceScores.neutral.toFixed(2)}`);
+            })
+        }
     }
 }
 
