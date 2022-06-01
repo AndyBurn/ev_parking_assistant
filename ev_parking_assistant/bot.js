@@ -24,8 +24,8 @@ class EchoBot extends ActivityHandler {
 
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            const replyText = `Echo: ${ context.activity.text }`;
-            await context.sendActivity(MessageFactory.text(replyText, replyText));
+            // const replyText = `Echo: ${ context.activity.text }`;
+            // await context.sendActivity(MessageFactory.text(replyText, replyText));
 
             // Call the sentiment analysis function on the context text
             await sentimentAnalysis(textAnalyticsClient,context.activity.text);
