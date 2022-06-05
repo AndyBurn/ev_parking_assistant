@@ -31,7 +31,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./ev_parking_assistant
+          app_location: "/ev_parking_assistant/"
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
