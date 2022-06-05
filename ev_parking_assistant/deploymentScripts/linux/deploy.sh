@@ -52,7 +52,7 @@ fi
 if [[ ! -n "$KUDU_SYNC_CMD" ]]; then
   # Install kudu sync
   echo Installing Kudu Sync
-  npm i fsevents@latest -f --save-optional
+  # npm i fsevents@latest -f --save-optional
   npm install -f kudusync -g --silent
   exitWithMessageOnError "npm failed"
 

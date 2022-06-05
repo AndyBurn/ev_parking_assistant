@@ -16,7 +16,7 @@
         "url": "https://github.com"
     },
     "dependencies": {
-        "botbuilder": "~4.16.0",
+        "botbuilder": "^4.16.0",
         "botbuilder-ai": "^4.16.0",
         "dotenv": "^8.2.0",
         "formidable": "^3.2.4",
