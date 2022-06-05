@@ -27,12 +27,13 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
+        working-directory: ev_parking_assistant
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          app_location: "/ev_parking_assistant/"
-          path: ./ev_parking_assistant
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
