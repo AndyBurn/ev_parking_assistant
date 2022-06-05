@@ -44,7 +44,7 @@
           if (now > expireAfter) {
             expireAfter = now + 300000;
             // lastPromise = fetch('https://webchat-mockbot.azurewebsites.net/speechservices/token', {
-              lastPromise = fetch('https://ev-parking-assistant-app-service.azurewebsites.net/speechservices/5_NnKIlLkAA.n87cdB-mzE7Evzzol8z_Hg2ipst5PtDIzq45astS3IA', {
+              lastPromise = fetch('https://ev-parking-assistant-app-service.azurewebsites.net/speechservices/token', {
               method: 'POST'
             }).then(
               res => res.json(),
@@ -69,7 +69,7 @@
         // and to understand the risks associated with using secrets, visit https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0
 
         // const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
-        const res = await fetch('https://ev-parking-assistant-app-service.azurewebsites.net/directline/5_NnKIlLkAA.n87cdB-mzE7Evzzol8z_Hg2ipst5PtDIzq45astS3IA', { method: 'POST' });
+        const res = await fetch('https://ev-parking-assistant-app-service.azurewebsites.net/directline/token', { method: 'POST' });
         const { token } = await res.json();
 
         // Create the ponyfill factory function, which can be called to create a concrete implementation of the ponyfill.
