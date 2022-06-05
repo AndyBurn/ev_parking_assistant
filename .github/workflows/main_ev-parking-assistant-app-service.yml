@@ -32,7 +32,7 @@ jobs:
         with:
           name: node-app
           app_location: "/ev_parking_assistant/"
-          path: "/ev_parking_assistant/ev_parking_assistant"
+          path: ./ev_parking_assistant
 
   deploy:
     runs-on: ubuntu-latest
