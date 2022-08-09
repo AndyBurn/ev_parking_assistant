@@ -48,7 +48,7 @@
             // lastPromise = fetch('https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken', {
             //   method: 'POST', headers: {'Ocp-Apim-Subscription-Key': '109b639b02af44578e969cd2912935a3'}
             
-            // lastPromise = fetch('https://directline.botframework.com/v3/speechservices/tokens/generate', {
+            // lastPromise = fetch('https://directline.botframework.com/v3/speechservices/tokens/conversations', {
             //   method: 'POST', headers: { Authorization: 'Bearer 8AGcerjw-MI.rLMOypt4s5HnF1M9lZZuZb9tCItw5hGSykLXJL_QmXw'}
 
             lastPromise = fetch('https://webchat-mockbot.azurewebsites.net/speechservices/token', {
@@ -84,7 +84,7 @@
         //   return (new Error('error!'))
         // }
 
-        // const res = await fetch('https://directline.botframework.com/v3/directline/tokens/generate', { method: 'POST', headers: { Authorization: 'Bearer 8AGcerjw-MI.rLMOypt4s5HnF1M9lZZuZb9tCItw5hGSykLXJL_QmXw'} });
+        // const res = await fetch('https://directline.botframework.com/v3/directline/tokens/conversations', { method: 'POST', headers: { Authorization: 'Bearer 8AGcerjw-MI.rLMOypt4s5HnF1M9lZZuZb9tCItw5hGSykLXJL_QmXw'} });
 
         const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
 
