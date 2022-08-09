@@ -26,7 +26,9 @@
     </style>
   </head>
   <body>
-    <div id="webchat" role="main"></div>
+    <div style="width:80%;height:80%;margin:auto">
+      <div id="webchat" role="main" style="margin-top:5%"></div>
+    </div>
     <script>
       // Create a function to fetch the Cognitive Services Speech Services credentials.
       // The async function created will hold expiration information about the token and will return cached token when possible.
@@ -43,11 +45,17 @@
           // https://docs.microsoft.com/en-us/azure/cognitive-services/authentication#authenticate-with-an-authentication-token
           if (now > expireAfter) {
             expireAfter = now + 300000;
-            // lastPromise = fetch('https://webchat-mockbot.azurewebsites.net/speechservices/token', {
-              lastPromise = fetch('https://ev-parking-assistant-app-service.azurewebsites.net/speechservices/token', {
+            // lastPromise = fetch('https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken', {
+            //   method: 'POST', headers: {'Ocp-Apim-Subscription-Key': '109b639b02af44578e969cd2912935a3'}
+            
+            // lastPromise = fetch('https://directline.botframework.com/v3/speechservices/tokens/generate', {
+            //   method: 'POST', headers: { Authorization: 'Bearer 8AGcerjw-MI.rLMOypt4s5HnF1M9lZZuZb9tCItw5hGSykLXJL_QmXw'}
+
+            lastPromise = fetch('https://webchat-mockbot.azurewebsites.net/speechservices/token', {
               method: 'POST'
             }).then(
               res => res.json(),
+              // res => res.text(),
               err => {
                 expireAfter = 1000000;
 
@@ -68,8 +76,18 @@
         // Tokens are more secure. To learn about the differences between secrets and tokens.
         // and to understand the risks associated with using secrets, visit https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0
 
-        // const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
-        const res = await fetch('https://ev-parking-assistant-app-service.azurewebsites.net/directline/token', { method: 'POST' });
+        // const res = await fetch('https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken', { method: 'POST', headers: {'Ocp-Apim-Subscription-Key': '109b639b02af44578e969cd2912935a3'}});
+        // if (res.status=200){
+        //   region = 'eastus',
+        //   token = await res.text()
+        // } else {
+        //   return (new Error('error!'))
+        // }
+
+        // const res = await fetch('https://directline.botframework.com/v3/directline/tokens/generate', { method: 'POST', headers: { Authorization: 'Bearer 8AGcerjw-MI.rLMOypt4s5HnF1M9lZZuZb9tCItw5hGSykLXJL_QmXw'} });
+
+        const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
+
         const { token } = await res.json();
 
         // Create the ponyfill factory function, which can be called to create a concrete implementation of the ponyfill.

@@ -18,8 +18,8 @@
     "dependencies": {
         "botbuilder": "~4.16.0",
         "botbuilder-ai": "^4.16.0",
-        "formidable": "^3.2.4",
         "dotenv": "^8.2.0",
+        "formidable": "^3.2.4",
         "restify": "~8.6.0",
         "uuid": "^8.3.2"
     },
